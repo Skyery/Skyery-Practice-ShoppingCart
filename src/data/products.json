@@ -1,0 +1,112 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "卡蘭德的魔鏡",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyDuplicate.png?w=1&h=1&",
+            "price": 1000,
+            "category": "通貨",
+            "description_1": "複製一件指定物品",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件非傳奇的物品來使用，使用後將產生一件複製品。請注意，複製出來的物品無法再使用通貨改變其屬性。"
+        },
+        {
+            "id": 2,
+            "name": "崇高石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyAddModToRare.png?w=1&h=1&",
+            "price": 500,
+            "category": "通貨",
+            "description_1": "為一件稀有物品新增一項隨機屬性",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件稀有物品來使用。稀有物品最多可以擁有六個屬性。物品的催化劑品質會增加對應品質種類的詞綴出現機率。使用時消耗 20% 催化劑套用的品質。"
+        },
+        {
+            "id": 3,
+            "name": "混沌石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png?w=1&h=1&",
+            "price": 100,
+            "category": "通貨",
+            "description_1": "重置一件稀有物品上的所有屬性",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件稀有物品來使用。"
+        },
+        {
+            "id": 4,
+            "name": "改造石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollMagic.png?w=1&h=1&",
+            "price": 20,
+            "category": "通貨",
+            "description_1": "重置一件魔法物品上的所有屬性",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件魔法物品來使用。"
+        },
+        {
+            "id": 5,
+            "name": "點金石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeToRare.png?w=1&h=1&",
+            "price": 50,
+            "category": "通貨",
+            "description_1": "將一件普通物品升級成稀有物品",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件普通物品來使用。"
+        },
+        {
+            "id": 6,
+            "name": "重鑄石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyConvertToNormal.png?w=1&h=1&",
+            "price": 70,
+            "category": "通貨",
+            "description_1": "將一件物品上的所有屬性刪除，變回普通物品",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件魔法或稀有物品來使用。"
+        },
+        {
+            "id": 7,
+            "name": "富豪石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyUpgradeMagicToRare.png?w=1&h=1&",
+            "price": 70,
+            "category": "通貨",
+            "description_1": "將一件魔法物品升級成稀有物品",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件魔法物品來使用。此物品上原有的屬性會保留並額外再增加一個屬性。物品的催化劑品質會增加對應品質種類的詞綴出現機率。使用時消耗 5% 催化劑套用的品質。"
+        },
+        {
+            "id": 8,
+            "name": "幻色石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollSocketColours.png?w=1&h=1&",
+            "price": 50,
+            "category": "通貨",
+            "description_1": "重置一件物品上插槽的顏色",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件有插槽的物品來使用。"
+        },
+        {
+            "id": 9,
+            "name": "後悔石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyPassiveSkillRefund.png?w=1&h=1&",
+            "price": 100,
+            "category": "通貨",
+            "description_1": "獲得一點天賦重置點數",
+            "description_2": "右鍵點擊此物品以使用它。"
+        },
+        {
+            "id": 10,
+            "name": "鏈結石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollSocketLinks.png?w=1&h=1&",
+            "price": 200,
+            "category": "通貨",
+            "description_1": "重置一件物品上插槽的連線",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件有插槽的物品來使用。該項物品的品質越高，出現越多條連線的機率越高。"
+        },
+        {
+            "id": 11,
+            "name": "工匠石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollSocketNumbers.png?w=1&h=1&",
+            "price": 50,
+            "category": "通貨",
+            "description_1": "工匠石重置一件物品上插槽的數量",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件有插槽的物品來使用。該項物品的品質越高，出現越多插槽的機率越高。"
+        },
+        {
+            "id": 12,
+            "name": "神聖石",
+            "url": "https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyModValues.png?w=1&h=1&",
+            "price": 100,
+            "category": "通貨",
+            "description_1": "重置一件物品上隨機屬性的數值",
+            "description_2": "右鍵點擊此物品，再左鍵點擊一件魔法、稀有或傳奇物品來使用。"
+        }
+    ]
+}
