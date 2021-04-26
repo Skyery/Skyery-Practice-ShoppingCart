@@ -1,24 +1,28 @@
-# shopping-cart
+# 電商網站 - 流亡購物網
+> 專案作品為虛擬購物商店，以線上遊戲'流亡黯道'為主題製作。
 
-## Project setup
-```
-npm install
-```
+### 簡介
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+前台功能：
 
-### Compiles and minifies for production
-```
-npm run build
-```
+* 商品展示
+* 購物車及模擬簡易結帳
 
-### Lints and fixes files
-```
-npm run lint
-```
+後台功能：
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* 產品管理
+* 訂單管理
+* 會員管理
+
+### DEMO
+
+[流亡購物網](https://skyery.github.io/Skyery-Practice-ShoppingCart/)
+
+### 專案使用
+
+* Vue3.js
+* Vue CLI
+* Vuex
+* Vue Router
+* JavaScript (ES6、LocalStorage...)
+* FireBase (Realtime Database、Authentication...)
