@@ -11,13 +11,13 @@ export default {
     onBeforeMount(() => {
       apiGetFirebaseRequest.auth().onAuthStateChanged((user) => {
         if (!user) {
-          router.push("/login");
+          router.push({ path: "/login" });
         }
       });
     });
 
     const transactionID = computed(() => store.getters.transactionID);
-    const backHome = () => router.push("/");
+    const backHome = () => router.push({ path: "/" });
     return { transactionID, backHome };
   },
 };

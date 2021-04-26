@@ -13,8 +13,7 @@ export default {
       apiGetFirebaseRequest
         .auth()
         .signInWithEmailAndPassword(email.value, password.value)
-        .then((data) => {
-          console.log(data);
+        .then(() => {
           router.go(-1);
         })
         .catch((err) => console.log(err.message));

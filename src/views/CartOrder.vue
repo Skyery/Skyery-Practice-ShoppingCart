@@ -28,7 +28,7 @@ export default {
           userData.name = userName;
           userData.email = userEmail;
         } else {
-          router.push("/login");
+          router.push({ path: "/login" });
         }
       });
     });
@@ -71,7 +71,7 @@ export default {
   methods: {
     orderData() {
       this.$store.dispatch("addtoOrder", this.userData);
-      this.$router.push("checkOut");
+      this.$router.push({ path: "/checkOut" });
     },
   },
 };

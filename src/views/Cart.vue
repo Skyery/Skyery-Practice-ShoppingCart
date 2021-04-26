@@ -2,21 +2,27 @@
 import CartCard from "@/components/cart/CartCard.vue";
 import CartCardEmpty from "@/components/cart/CartCardEmpty.vue";
 import CartTotalPayment from "@/components/cart/CartTotalPayment.vue";
+import { computed, watch } from "vue";
+import { useStore } from "vuex";
 export default {
   name: "Cart",
   components: { CartCard, CartTotalPayment, CartCardEmpty },
-  computed: {
-    items() {
-      return this.$store.getters.cartItems;
-    },
-    cartCount() {
-      return this.$store.getters.cartItemsLength;
-    },
-  },
-  watch: {
-    cartCount(newCount) {
+  setup() {
+    const store = useStore();
+
+    const items = computed(() => {
+      return store.getters.cartItems;
+    });
+
+    const cartCount = computed(() => {
+      return store.getters.cartItemsLength;
+    });
+
+    watch(cartCount, (newCount) => {
       newCount === 0 ? true : false;
-    },
+    });
+
+    return { items, cartCount };
   },
 };
 </script>

@@ -1,35 +1,46 @@
 <script>
 import SlotCard from "@/components/SlotCard.vue";
+import { computed, ref } from "vue";
 export default {
   props: ["product"],
   components: { SlotCard },
-  data() {
-    return {
-      active: false,
-      pos: 0,
+  setup(props) {
+    const active = ref(false);
+    const pos = ref(0);
+
+    const item_cost = computed(() => {
+      return props.product.price * props.product.count;
+    });
+
+    const handLeave = () => {
+      active.value = false;
     };
-  },
-  methods: {
-    getOffset(e) {
+
+    const getOffset = (e) => {
+      active.value = true;
       const isSmall = window.innerWidth < 767 ? true : false;
 
       if (isSmall) {
-        e.clientY < window.innerHeight / 2 ? (this.pos = 3) : (this.pos = 4);
+        e.clientY < window.innerHeight / 2 ? (pos.value = 3) : (pos.value = 4);
       } else {
         if (e.clientY < 200) {
-          this.pos = 0;
+          pos.value = 0;
         } else if (e.clientY > 700) {
-          this.pos = 1;
+          pos.value = 1;
         } else {
-          this.pos = 2;
+          pos.value = 2;
         }
       }
-    },
-  },
-  computed: {
-    item_cost() {
-      return this.product.price * this.product.count;
-    },
+    };
+
+    return {
+      props,
+      active,
+      pos,
+      item_cost,
+      getOffset,
+      handLeave,
+    };
   },
 };
 </script>
@@ -40,10 +51,10 @@ export default {
       <th>
         <span
           class="productName"
-          @mouseenter="(active = true), getOffset($event)"
-          @mouseleave="active = false"
+          @mouseenter="getOffset($event)"
+          @mouseleave="handLeave"
         >
-          {{ product.name }}
+          {{ props.product.name }}
 
           <transition name="slotTooltip">
             <slot-card
@@ -57,25 +68,25 @@ export default {
               ]"
             >
               <template v-slot:name>
-                {{ product.name }}
+                {{ props.product.name }}
               </template>
               <template v-slot:category>
-                {{ product.category }}
+                {{ props.product.category }}
               </template>
               <template v-slot:description_1>
-                {{ product.description_1 }}
+                {{ props.product.description_1 }}
               </template>
               <template v-slot:description_2>
-                {{ product.description_2 }}
+                {{ props.product.description_2 }}
               </template>
               <template v-slot:src>
-                <img :src="product.url" />
+                <img :src="props.product.url" />
               </template>
             </slot-card>
           </transition>
         </span>
       </th>
-      <td>{{ product.count }}</td>
+      <td>{{ props.product.count }}</td>
       <td>${{ item_cost }}</td>
     </tr>
   </tbody>

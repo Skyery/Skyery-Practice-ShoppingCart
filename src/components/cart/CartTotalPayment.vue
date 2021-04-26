@@ -1,9 +1,11 @@
 <script>
 import { computed, ref } from "vue";
-import store from "@/store";
+// import store from "@/store";
 import { apiGetFirebaseRequest } from "@/api/index.js";
+import { useStore } from "vuex";
 export default {
   setup() {
+    const store = useStore();
     const routerPath = ref("");
     const cart_total = computed(() => {
       return store.getters.cartTotal;
@@ -19,14 +21,21 @@ export default {
       });
     };
 
-    return { cart_total, CheckAuthStatus, routerPath };
+    const clearCart = () => {
+      store.dispatch("clearCart");
+    };
+
+    return { cart_total, CheckAuthStatus, routerPath, clearCart };
   },
 };
 </script>
 
 <template>
   <div class="cartTotal">
-    <h3>總計: ${{ cart_total }}</h3>
+    <div class="cartTotal-title">
+      <h3>總計 : ${{ cart_total }}</h3>
+      <button class="btn btn-attention" @click="clearCart">清空購物車</button>
+    </div>
 
     <div class="btn-container">
       <router-link class="btn" to="/">繼續選購</router-link>
@@ -51,9 +60,17 @@ export default {
   border-radius: 5px;
   background-color: #444;
 
-  h3 {
+  .cartTotal-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 0 1rem 0;
-    color: #fff;
+
+    h3 {
+      margin: 0 0 1rem 0;
+      color: #fff;
+    }
   }
 
   .btn-container {

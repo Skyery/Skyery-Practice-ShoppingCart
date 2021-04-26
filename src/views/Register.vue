@@ -13,9 +13,8 @@ export default {
       apiGetFirebaseRequest
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value)
-        .then((user) => {
-          console.log(user);
-          router.replace("/login");
+        .then(() => {
+          router.replace({ path: "/login" });
         })
         .catch((err) => console.log(err.message));
     };

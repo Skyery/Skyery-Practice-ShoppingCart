@@ -1,13 +1,19 @@
 <script>
 import ProductTable from "@/components/product/ProductTable.vue";
 import Footer from "@/components/Footer.vue";
+import { computed } from "vue";
+import { useStore } from "vuex";
 export default {
   name: "Home",
   components: { ProductTable, Footer },
-  computed: {
-    getProducts() {
-      return this.$store.getters["Products/getProducts"];
-    },
+  setup() {
+    const store = useStore();
+
+    const getProducts = computed(() => {
+      return store.getters["Products/getProducts"];
+    });
+
+    return { getProducts };
   },
 };
 </script>

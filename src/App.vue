@@ -1,48 +1,65 @@
 <script>
 import { apiGetFirebaseRequest } from "@/api/index.js";
+import { computed, onBeforeMount, onMounted, ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
-  data() {
-    return {
-      userName: "",
-      activeLogout: false,
-    };
-  },
-  beforeMount() {
-    apiGetFirebaseRequest.auth().onAuthStateChanged((user) => {
-      if (user) {
-        const userName = apiGetFirebaseRequest
-          .auth()
-          .currentUser.email.split("@")[0];
-        this.userName = userName;
-      } else {
-        this.userName = "登入";
-      }
+  setup() {
+    const userName = ref("");
+    const activeLogout = ref(false);
+    const store = useStore();
+    const router = useRouter();
+
+    onBeforeMount(() => {
+      apiGetFirebaseRequest.auth().onAuthStateChanged((user) => {
+        if (user) {
+          const _userName = apiGetFirebaseRequest
+            .auth()
+            .currentUser.email.split("@")[0];
+          userName.value = _userName;
+        } else {
+          userName.value = "登入";
+        }
+      });
     });
-  },
-  mounted() {
-    this.$store.dispatch("Products/handInit");
-    this.$store.dispatch("updateCartFromLocalStorage");
-  },
-  computed: {
-    cart_Items_Length() {
-      return this.$store.getters.cartItemsLength;
-    },
-  },
-  methods: {
-    Logout() {
+
+    onMounted(() => {
+      store.dispatch("Products/handInit");
+      store.dispatch("updateCartFromLocalStorage");
+    });
+
+    const cart_Items_Length = computed(() => {
+      return store.getters.cartItemsLength;
+    });
+
+    const Logout = () => {
       apiGetFirebaseRequest
         .auth()
         .signOut()
-        .then(() => console.log("Log out"))
+        .then(() => router.push({ path: "/login" }))
         .catch((err) => console.log(err.message));
 
-      this.activeLogout = false;
-      this.$router.push({ path: "/" });
-    },
-    AuthStatusMenu() {
-      if (this.userName === "登入") return;
-      this.activeLogout = true;
-    },
+      activeLogout.value = false;
+      router.push({ path: "/" });
+    };
+
+    const AuthStatusMenu = () => {
+      if (userName.value === "登入") return;
+      activeLogout.value = true;
+    };
+
+    const AuthLink = () => {
+      userName.value === "登入" ? router.push({ path: "/login" }) : "";
+    };
+
+    return {
+      userName,
+      activeLogout,
+      cart_Items_Length,
+      Logout,
+      AuthStatusMenu,
+      AuthLink,
+    };
   },
 };
 </script>
@@ -62,7 +79,9 @@ export default {
             >
           </li>
           <li @mouseenter="AuthStatusMenu" @mouseleave="activeLogout = false">
-            <router-link to="/login"> {{ userName }} </router-link>
+            <a @click="AuthLink">
+              {{ userName }}
+            </a>
             <div v-show="activeLogout" class="btn-logout">
               <span @click="Logout">登出</span>
             </div>
@@ -135,6 +154,10 @@ body {
 
       li {
         margin-right: 1.5rem;
+
+        > a {
+          cursor: pointer;
+        }
 
         &:last-child {
           position: relative;
