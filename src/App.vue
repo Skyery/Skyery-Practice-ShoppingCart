@@ -7,6 +7,7 @@ export default {
   setup() {
     const userName = ref("");
     const activeLogout = ref(false);
+    const activeFixTop = ref(false);
     const store = useStore();
     const router = useRouter();
 
@@ -26,6 +27,12 @@ export default {
     onMounted(() => {
       store.dispatch("Products/handInit");
       store.dispatch("updateCartFromLocalStorage");
+
+      window.document.onscroll = () => {
+        window.scrollY > 0
+          ? (activeFixTop.value = true)
+          : (activeFixTop.value = false);
+      };
     });
 
     const cart_Items_Length = computed(() => {
@@ -52,20 +59,26 @@ export default {
       userName.value === "登入" ? router.push({ path: "/login" }) : "";
     };
 
+    const ChatIn = () => {
+      router.push({ path: "/chat" });
+    };
+
     return {
       userName,
       activeLogout,
+      activeFixTop,
       cart_Items_Length,
       Logout,
       AuthStatusMenu,
       AuthLink,
+      ChatIn,
     };
   },
 };
 </script>
 
 <template>
-  <div id="nav">
+  <div id="nav" :class="{ fixTop: activeFixTop }">
     <div class="nav-container">
       <div class="nav-left">
         <router-link class="logo" to="/">流亡購物網</router-link>
@@ -83,6 +96,7 @@ export default {
               {{ userName }}
             </a>
             <div v-show="activeLogout" class="btn-logout">
+              <span @click="ChatIn">聊天室</span>
               <span @click="Logout">登出</span>
             </div>
           </li>
@@ -115,11 +129,20 @@ body {
   background-color: #222222;
 }
 
+.fixTop {
+  position: fixed;
+  top: 0;
+  height: 62px;
+  background-color: #294461 !important;
+  opacity: 0.95;
+}
+
 #nav {
   box-sizing: border-box;
   width: 100%;
   background-color: #375a7f;
   padding: 1rem 1rem;
+  transition: 0.2s;
 
   .nav-container {
     max-width: 1140px;

@@ -1,6 +1,5 @@
 <script>
 import { computed, ref } from "vue";
-// import store from "@/store";
 import { apiGetFirebaseRequest } from "@/api/index.js";
 import { useStore } from "vuex";
 export default {
@@ -13,11 +12,7 @@ export default {
 
     const CheckAuthStatus = () => {
       apiGetFirebaseRequest.auth().onAuthStateChanged((user) => {
-        if (user) {
-          routerPath.value = "order";
-        } else {
-          routerPath.value = "login";
-        }
+        user ? (routerPath.value = "order") : (routerPath.value = "login");
       });
     };
 
